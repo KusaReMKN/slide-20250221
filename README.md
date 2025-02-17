@@ -9,3 +9,11 @@
 ```console
 $ latexmk -lualatex
 ```
+
+## 最適化
+
+出力される PDF がかなり大きいため、必要であれば最適化します。
+
+```console
+$ ./optimize.sh
+```
