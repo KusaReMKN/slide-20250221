@@ -5,7 +5,7 @@
 ]{beamer}
 
 \usetheme[progressbar=frametitle]{Metropolis}
-%\setbeameroption{show notes on second screen=bottom}
+\setbeameroption{show notes on second screen=bottom}
 
 \usepackage{xparse}
 \usepackage{mathtools,amssymb}
@@ -27,13 +27,13 @@
 \usepackage{hyperref}
 
 \title{世も令和になって久しいので\\オレオレIP電話網や黒電話で遊んでみる}
-\subject{エンジニア作業飲み会\#119}
+\subject{CS集会\#47}
 \author{上羽 未栞（a.k.a. KusaReMKN）}
 \institute{%
   \url{https://KusaReMKN.com/}\\
   Twitter: \href{https://twitter.com/KusaReMKN}{@KusaReMKN}}
 \keywords{黒電話; VoIP; IP電話; MikoPBX; 東京広域電話網}
-\date{2025-02-21}
+\date{2025-03-11}
 
 \begin{document}
 
@@ -58,36 +58,36 @@
   }
 \end{frame}
 
-\begin{frame}
-  \frametitle{今日のレジュメ（宣伝（1回目））}
-
-  \includegraphics[width=\linewidth]{./images/imasara.png}
-  \note{
-    早速だけど、宣伝だよ（えっ）。
-    今回の発表内容についての記事がZennに投稿されているよ。
-  }
-\end{frame}
-
-\begin{frame}
-  \frametitle{今日のレジュメ（宣伝（1回目））}
-
-  \begin{description}[labelwidth=\linewidth,itemsep=\zh]
-    \item[いまさらVoIP網]
-      {\small
-      \url{https://zenn.dev/kusaremkn/articles/abd760f9f2f450}}
-    \item[VoIPルータを使って黒電話をIP電話機にする]
-      {\small
-      \url{https://zenn.dev/kusaremkn/articles/187222dc1d4f1d}}
-    \item[ICOM VE-TA10を使うためにパケットを書き換えたりする]
-      {\small
-      \url{https://zenn.dev/kusaremkn/articles/cb32b500fc1334}}
-  \end{description}
-  \note{
-    関連するトピックについての記事も投稿されているよ。
-    暇な人は読んでみてね。
-    「いまさらVoIP網」でGoogleすると一番上の方に出てくるよ。
-  }
-\end{frame}
+%\begin{frame}
+%  \frametitle{今日のレジュメ（宣伝（1回目））}
+%
+%  \includegraphics[width=\linewidth]{./images/imasara.png}
+%  \note{
+%    早速だけど、宣伝だよ（えっ）。
+%    今回の発表内容についての記事がZennに投稿されているよ。
+%  }
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{今日のレジュメ（宣伝（1回目））}
+%
+%  \begin{description}[labelwidth=\linewidth,itemsep=\zh]
+%    \item[いまさらVoIP網]
+%      {\small
+%      \url{https://zenn.dev/kusaremkn/articles/abd760f9f2f450}}
+%    \item[VoIPルータを使って黒電話をIP電話機にする]
+%      {\small
+%      \url{https://zenn.dev/kusaremkn/articles/187222dc1d4f1d}}
+%    \item[ICOM VE-TA10を使うためにパケットを書き換えたりする]
+%      {\small
+%      \url{https://zenn.dev/kusaremkn/articles/cb32b500fc1334}}
+%  \end{description}
+%  \note{
+%    関連するトピックについての記事も投稿されているよ。
+%    暇な人は読んでみてね。
+%    「いまさらVoIP網」でGoogleすると一番上の方に出てくるよ。
+%  }
+%\end{frame}
 
 \section*{みかんちゃんについて}
 \note{
@@ -400,6 +400,18 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{内線接続・外線接続が完了（追加スライド）}
+
+  \vspace{\baselineskip}
+  \includegraphics[page=8,width=\linewidth]{./images/pictures.pdf}
+
+  \note{
+    これまでできていた同一局内の端末同士の内線通話に加えて、
+    局をまたいで別の局の端末との通話（外線通話）もできるようになったよ。
+  }
+\end{frame}
+
+\begin{frame}
   \frametitle{多局接続がむつかしい}
 
   \includegraphics[page=5,width=\linewidth]{./images/pictures.pdf}
@@ -524,6 +536,28 @@
     これによって外線接続を着信しても再び外線接続のチャンスがやってくるよ。
     つまり、着信局は外線に着信をバケツリレーできて、
     別の局に通話を取り次げるようになるよ。
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{番号検索ルーティーン（追加スライド）}
+
+  \includegraphics[page=9,width=\linewidth]{./images/pictures.pdf}
+  \note{
+    番号検索ルーティーンのイメージをスライドに示しているよ。
+    Asteriskのプログラムはgotoとgosubとの嵐で
+    古いBASICを彷彿とさせる最悪さがあるよ。
+
+    外線からの着信はちょっとだけ処理をされてから
+    内線番号を検索する部分にジャンプしているよ。
+    内線番号を検索する部分には
+    ダイヤルプランアプリケーションや端末番号を検索する処理があるよ。
+    ここで番号が見つからなかったら着信失敗になるよ。
+
+    で、アプリケーションとしてフック用の番号を用意してあげて、
+    そこから全ピア検索のルーティーンにジャンプするように細工をするよ。
+    これによって外線着信から外線発信できるようになって、
+    別の局に通話を取り次げるようになったよ。
   }
 \end{frame}
 
@@ -751,6 +785,7 @@
   \frametitle{このスライドについて}
 
   Written in February 2025.\\
+  Updated in March 2025.\\
   \hspace{1.5\zw}Permanent ID of this document: \texttt{55b54dae70afe9e9}.
   \\~\\[-.5\baselineskip]
 
