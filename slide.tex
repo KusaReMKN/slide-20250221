@@ -5,7 +5,7 @@
 ]{beamer}
 
 \usetheme[progressbar=frametitle]{Metropolis}
-\setbeameroption{show notes on second screen=bottom}
+%\setbeameroption{show notes on second screen=bottom}
 
 \usepackage{xparse}
 \usepackage{mathtools,amssymb}
@@ -26,7 +26,7 @@
 
 \usepackage{hyperref}
 
-\title{世も令和になって久しいので\\オレオレIP電話網や黒電話で遊んでみる}
+\title{世も令和になって久しいので\\オレオレIP電話網や黒電話で遊んでみる\\（再放送版）}
 \subject{CS集会\#47}
 \author{上羽 未栞（a.k.a. KusaReMKN）}
 \institute{%
@@ -54,40 +54,9 @@
   \tableofcontents
   \note{
     今回の発表の流れはこんな感じだよ。
-    質疑応答を含めて大体20分間くらいで進められたらいいな。
+    質疑応答を含めて大体25分間くらいで進められたらいいな。
   }
 \end{frame}
-
-%\begin{frame}
-%  \frametitle{今日のレジュメ（宣伝（1回目））}
-%
-%  \includegraphics[width=\linewidth]{./images/imasara.png}
-%  \note{
-%    早速だけど、宣伝だよ（えっ）。
-%    今回の発表内容についての記事がZennに投稿されているよ。
-%  }
-%\end{frame}
-%
-%\begin{frame}
-%  \frametitle{今日のレジュメ（宣伝（1回目））}
-%
-%  \begin{description}[labelwidth=\linewidth,itemsep=\zh]
-%    \item[いまさらVoIP網]
-%      {\small
-%      \url{https://zenn.dev/kusaremkn/articles/abd760f9f2f450}}
-%    \item[VoIPルータを使って黒電話をIP電話機にする]
-%      {\small
-%      \url{https://zenn.dev/kusaremkn/articles/187222dc1d4f1d}}
-%    \item[ICOM VE-TA10を使うためにパケットを書き換えたりする]
-%      {\small
-%      \url{https://zenn.dev/kusaremkn/articles/cb32b500fc1334}}
-%  \end{description}
-%  \note{
-%    関連するトピックについての記事も投稿されているよ。
-%    暇な人は読んでみてね。
-%    「いまさらVoIP網」でGoogleすると一番上の方に出てくるよ。
-%  }
-%\end{frame}
 
 \section*{みかんちゃんについて}
 \note{
@@ -400,7 +369,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{内線接続・外線接続が完了（追加スライド）}
+  \frametitle{内線接続に加え、外線接続もできるようになった！}
 
   \vspace{\baselineskip}
   \includegraphics[page=8,width=\linewidth]{./images/pictures.pdf}
@@ -540,7 +509,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{番号検索ルーティーン（追加スライド）}
+  \frametitle{番号検索ルーティーン}
 
   \includegraphics[page=9,width=\linewidth]{./images/pictures.pdf}
   \note{
@@ -586,18 +555,18 @@
   「\textbf{東京広域電話網}」のプロジェクト開始が2024年10月中旬
   \\~\\[-.5\baselineskip]
 
-  現在（2025年2月）に至るまで約4ヶ月間ほど実運用\\
+  現在（2025年3月）に至るまで約5ヶ月間弱ほど実運用\\
   \hspace{1.5\zw}Webから通話できるアプリケーションの実現\\
   \hspace{1.5\zw}時報やモーニングコールなどのサービスも実現\\
   \hspace{1.5\zw}電話だけでなくFAXやダイヤルアップ通信も動作確認
   \\~\\[-.5\baselineskip]
 
   電話網の相互接続状況を記述するJSON Schemaを開発\\
-  \hspace{1.5\zw}\url{https://github.com/KusaReMKN/mantela}\\
-  \hspace{1.5\zw}\url{https://github.com/KusaReMKN/mantela-viewer}
+  \hspace{1.5\zw}\url{https://github.com/tkytel/mantela}\\
+  \hspace{1.5\zw}\url{https://github.com/tkytel/mantela-viewer}
   \note{
     東京広域電話網の発足は2024-10くらいなので、
-    現在まで大体4ヶ月くらい運用されているよ。
+    現在まで大体5ヶ月弱くらい運用されているよ。
 
     この間にWEBから通話できるアプリケーションが開発されたり、
     時報やモーニングコールなどといった電話サービスが実現されたりしたよ。
@@ -619,28 +588,29 @@
     \begin{column}{.25\textwidth}
       \begin{description}[labelwidth=\linewidth]
         \item[交換局数]
-          13局
+          15局
         \item[端末数]
-          58以上\\
+          67以上\\
           （仮想含む）
-        \item[うち黒電話]
-          10程度
+        \item[黒電話の数]
+          15程度
         \item[その他]
           公衆電話\\
           ワープロ
       \end{description}
+      ~
     \end{column}
     \begin{column}{.7\textwidth}
       \centering
-      \includegraphics[height=.87\textheight]{./images/mantela.png}
+      \includegraphics[height=\textheight]{./images/mantela.png}
     \end{column}
   \end{columns}
   \note{
     現在の電話網の姿を描画してみたよ。
     かなり小さくない網になっていることがわかると思うよ。
 
-    この電話網の中には13個以上の電話局があって、
-    端末数は58以上（隠されている端末もあるので実際には60数台）あるよ。
+    この電話網の中には15個以上の電話局があって、
+    端末数は67以上（隠されている端末もあるので実際には70数台）あるよ。
   }
 \end{frame}
 
@@ -651,27 +621,27 @@
     \begin{column}{.25\textwidth}
       \begin{description}[labelwidth=\linewidth]
         \item[交換局数]
-          13局
+          15局
         \item[端末数]
-          58以上\\
+          67以上\\
           （仮想含む）
-        \item[うち黒電話]
-          10程度
+        \item[黒電話の数]
+          15程度
         \item[その他]
           公衆電話\\
           ワープロ
       \end{description}
+      ~
     \end{column}
     \begin{column}{.7\textwidth}
       \centering
-      \includegraphics[height=.87\textheight]{./images/mantela2.png}
+      \includegraphics[height=\textheight]{./images/mantela2.png}
     \end{column}
   \end{columns}
   \note{
     もともと黒電話を使うことを念頭に作られた網であるので、
-    黒電話を数えてみると10程度ありそうだよ。
-    あ、この値は先週時点の値で、
-    いまはちょっと増えているハズなので20弱くらいになっていそうだよ。
+    黒電話を数えてみると15程度ありそうだよ。
+    黒電話を収容している局は全15局中12局もあるよ（なんで？）。
 
     その他にも、公衆電話が接続されていたり、
     ワープロが接続されていたりとかなり面白い網になっているよ。
@@ -717,17 +687,17 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{今日のお話の記事（宣伝（2回目））}
+  \frametitle{今日のお話の記事（宣伝）}
 
   \includegraphics[width=\linewidth]{./images/imasara.png}
   \note{
-    で、二回目の宣伝だよ。
+    で、宣伝だよ。
     接続する方法の全てがZennに書いてあるよ。
   }
 \end{frame}
 
 \begin{frame}
-  \frametitle{今日のお話の記事（宣伝（2回目））}
+  \frametitle{今日のお話の記事（宣伝）}
 
   \begin{description}[labelwidth=\linewidth,itemsep=\zh]
     \item[いまさらVoIP網]
@@ -746,6 +716,26 @@
   }
 \end{frame}
 
+\begin{frame}
+  \frametitle{東京広域電話網コミュニティ}
+
+  \begin{description}[labelwidth=\linewidth,itemsep=\zh]
+    \item[Web site]
+      {\small
+      \url{https://tkytel.github.io/}}
+    \item[Discord]
+      {\small
+      \url{https://discord.com/invite/QEzAnuSy9S}}
+    \item[Mailing list]
+      {\small
+      \url{https://groups.google.com/g/tkytel}}
+  \end{description}
+  \note{
+    東京広域電話網のコミュニティがあるよ。
+    気軽に参加してみてね。
+  }
+\end{frame}
+
 \section{まとめ}
 \note{
   今日のおはなしのまとめだよ。
@@ -760,7 +750,6 @@
 
   交換局ホップの実現（相互接続されていない局間での通話）
 
-  今後は電話網上のアプリケーションについて報告できたらいいな
   \note{
     オレオレIP電話網と黒電話で遊んでみたことについてお話をしたよ。
     MikoPBXというIP-PBXを用いてIP電話網を構築してみたよ。
@@ -768,9 +757,6 @@
     多局接続を実現できたので本当に網になったよ。
     交換局ホップを実現して、
     直接相互接続されていない局でも通話できることを確認したよ。
-
-    今後発表する機会があったら、
-    電話網上のアプリケーションとかについて報告できたらいいな。
   }
 \end{frame}
 
@@ -785,8 +771,10 @@
   \frametitle{このスライドについて}
 
   Written in February 2025.\\
-  Updated in March 2025.\\
-  \hspace{1.5\zw}Permanent ID of this document: \texttt{55b54dae70afe9e9}.
+  Updated in March 2025.
+  \\~\\[-.5\baselineskip]
+
+  Permanent ID of this document: \texttt{55b54dae70afe9e9}.
   \\~\\[-.5\baselineskip]
 
   Copyright © 2025 KusaReMKN.
